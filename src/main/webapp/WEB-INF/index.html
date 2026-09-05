@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG Admin Panel</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/static/favicon.ico}">
+    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+    <script th:src="@{/static/js/main.js}"></script>
+</head>
+<body>
+<h1>RPG Admin Panel</h1>
+<h2>Accounts list:</h2>
+
+<div id="main-container">
+<div id="page-size-group">
+    <label for="page-size">Count per page:</label>
+    <select id="page-size">
+        <option value="3">3</option>
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+    </select>
+</div>
+<table id="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Race</th>
+        <th>Profession</th>
+        <th>Level</th>
+        <th>Birthday</th>
+        <th>Banned</th>
+    </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+</table>
+<div id="pages-group">
+    <span>Pages: </span>
+    <span id="pages-list"></span>
+</div>
+</div>
+</body>
+</html>

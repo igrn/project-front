@@ -1,0 +1,93 @@
+html {
+    background-color: #21252b;
+    color: lightgray;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+/* Headers */
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+/* Admin panel */
+#main-container {
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: 0 15px;
+}
+
+/* Table */
+#table {
+    border-collapse: collapse;
+    margin-left: 0;
+    margin-right: auto;
+    width: 100%;
+}
+
+#table th, table td {
+    border: 2px solid #485062;
+    padding: 4px;
+}
+
+#table th {
+    background-color: darkslategray;
+    border-color: #6c7892;
+}
+
+#table tr:nth-child(even) {
+    background-color: #262a32;
+}
+
+#table tr:hover {
+    background-color: #42495a;
+}
+
+/* Pages */
+#page-size-group {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+#pages-group {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+
+#page-size {
+    margin-left: 5px;
+}
+
+/* Buttons */
+.page-btn {
+    background-color: #bebebe;
+    border-color: #6c7892;
+    border-radius: 12px;
+    color: #262a32;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 5px;
+    padding: 6px 10px;
+}
+
+.page-btn:hover {
+    background-color: #6c7892;
+    border-color: #42495a;
+    color: lightgray;
+}
+
+.page-btn.active {
+    background-color: darkslategray;
+    border-color: darkslategray;
+    color: lightgray;
+}

@@ -1,3 +1,16 @@
+//Build context-aware URLs
+let contextPath = $('meta[name="context-path"]').attr('content') || '';
+
+if (contextPath.endsWith('/')) {
+    contextPath = contextPath.slice(0, -1);
+}
+function getUrl(path) {
+    if (path.startsWith('/') && !path.startsWith(contextPath + '/')) {
+        return contextPath + path;
+    }
+    return path;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     let pageNumber = 0;
     let totalPages = 0;
@@ -27,7 +40,7 @@ window.addEventListener('DOMContentLoaded', () => {
     function loadAdminPanel() {
         const pageSize = parseInt($('#page-size').val());
         $.ajax({
-            url: '/rest/players/count',
+            url: getUrl('/rest/players/count'),
             method: 'GET',
             success: playerCount => {
                 totalPages = Math.ceil(playerCount / pageSize);
@@ -40,7 +53,7 @@ window.addEventListener('DOMContentLoaded', () => {
     //Fills the player table
     function fetchPlayerTable(page, size) {
         $.ajax({
-            url: '/rest/players',
+            url: getUrl('/rest/players'),
             method: 'GET',
             data: {
                 pageNumber: page,
@@ -63,10 +76,12 @@ window.addEventListener('DOMContentLoaded', () => {
                             <td>${birthday}</td>
                             <td class="editable-banned">${banned}</td>
                             <td class="action-cell">
-                                <img src="/static/img/edit.png" alt="Edit" class="icon-btn edit-btn" data-id="${item.id}">
+                                <img src="${getUrl('/static/img/edit.png')}" alt="Edit" 
+                                    class="icon-btn edit-btn" data-id="${item.id}">
                             </td>
                             <td class="action-cell">
-                                <img src="/static/img/delete.png" alt="Delete" class="icon-btn delete-btn" data-id="${item.id}">
+                                <img src="${getUrl('/static/img/delete.png')}" alt="Delete" 
+                                    class="icon-btn delete-btn" data-id="${item.id}">
                             </td>
                         </tr>`;
                     $('#table-body').append(row);
@@ -105,7 +120,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (confirm('Are you sure you want to delete this player?')) {
             $.ajax({
-                url: `/rest/players/${playerId}`,
+                url: getUrl(`/rest/players/${playerId}`),
                 method: 'DELETE',
                 success: () => loadAdminPanel()
             });
@@ -116,7 +131,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $('#table-body').on('click', '.edit-btn', function () {
         const $currentRow = $(this).closest('tr');
         $currentRow.find('.delete-btn').hide();
-        $(this).attr('src', '/static/img/save.png').attr('alt', 'Save')
+        $(this).attr('src', getUrl('/static/img/save.png')).attr('alt', 'Save')
             .removeClass('edit-btn').addClass('save-btn');
 
         //Text inputs
@@ -170,7 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
             banned: $currentRow.find('.editable-banned select').val() === 'true'
         };
         $.ajax({
-            url: `/rest/players/${playerId}`,
+            url: getUrl(`/rest/players/${playerId}`),
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(playerData),
@@ -209,7 +224,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         $.ajax({
-            url: '/rest/players',
+            url: getUrl('/rest/players'),
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(playerData),

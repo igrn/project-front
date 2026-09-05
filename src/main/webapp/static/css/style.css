@@ -1,11 +1,16 @@
+/* Generic styles */
 html {
     background-color: #21252b;
+    box-sizing: border-box;
     color: lightgray;
     font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
     text-align: center;
 }
 
-/* Headers */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 h1 {
     font-size: 36px;
 }
@@ -14,6 +19,11 @@ h2 {
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
+}
+
+hr {
+    color: #6c7892;
+    margin-top: 10px;
 }
 
 /* Admin panel */
@@ -62,6 +72,7 @@ h2 {
     align-items: center;
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 15px;
     margin-top: 15px;
 }
 
@@ -104,4 +115,49 @@ h2 {
     background-color: darkslategray;
     border-color: darkslategray;
     color: lightgray;
+}
+
+/* Create new player */
+.create-player-form {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+}
+
+.form-group {
+    align-items: center;
+    display: flex;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    min-width: 120px;
+    width: 120px;
+}
+
+.form-group input, .form-group select {
+    background-color: #ced4da;
+    border: 2px solid #6c7892;
+    border-radius: 4px;
+    flex-grow: 1;
+    font-size: 14px;
+    padding: 6px 10px;
+}
+
+/* Save button */
+.form-submit-group {
+    padding-left: 120px;
+    margin-top: 10px;
+}
+
+#create-save-btn {
+    border: 2px solid #6c7892;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
 }

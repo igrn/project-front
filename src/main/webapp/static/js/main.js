@@ -3,6 +3,20 @@ window.addEventListener('DOMContentLoaded', () => {
     let totalPages = 0;
     loadAdminPanel();
 
+    //Fetch and fill enum select options
+    const $selectRace = $('#create-race');
+    const $selectProfession = $('#create-profession');
+    if ($selectRace.length && typeof races !== 'undefined') {
+        $.each(races, (_index, value) => {
+            $selectRace.append($('<option></option>').val(value).text(value));
+        });
+    }
+    if ($selectProfession.length && typeof professions !== 'undefined') {
+        $.each(professions, (_index, value) => {
+            $selectProfession.append($('<option></option>').val(value).text(value));
+        });
+    }
+
     //Reset the page on 'count per page' changes
     $('#page-size').on('change', function () {
         pageNumber = 0;
@@ -161,6 +175,54 @@ window.addEventListener('DOMContentLoaded', () => {
             contentType: 'application/json',
             data: JSON.stringify(playerData),
             success: () => loadAdminPanel()
+        });
+    });
+
+    //Save a newly created player
+    $('#create-save-btn').on('click', function () {
+        const level = parseInt($('#create-level').val());
+        const rawBirthday = $('#create-birthday').val();
+        const birthday = rawBirthday ? new Date(rawBirthday).getTime() : null;
+
+        const playerData = {
+            name: $('#create-name').val(),
+            title: $('#create-title').val(),
+            race: $('#create-race').val(),
+            profession: $('#create-profession').val(),
+            level: level,
+            birthday: birthday,
+            banned: $('#create-banned').val() === 'true'
+        };
+
+        //Validations
+        if (!playerData.name || !playerData.name.trim()) {
+            alert('Please enter a player name.');
+            return;
+        }
+        if (isNaN(playerData.level) || playerData.level < 1 || playerData.level > 100) {
+            alert('Level must be a number between 1 and 100.');
+            return;
+        }
+        if (!playerData.birthday) {
+            alert('Please select a birthday.');
+            return;
+        }
+
+        $.ajax({
+            url: '/rest/players',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(playerData),
+            success: () => {
+                $('#create-name').val('');
+                $('#create-title').val('');
+                $('#create-level').val('');
+                $('#create-birthday').val('');
+                $('#create-race').prop('selectedIndex', 0);
+                $('#create-profession').prop('selectedIndex', 0);
+                $('#create-banned').prop('selectedIndex', 0);
+                loadAdminPanel();
+            }
         });
     });
 });

@@ -16,37 +16,75 @@
 <h1>RPG Admin Panel</h1>
 <h2>Accounts list:</h2>
 <div id="main-container">
-<div id="page-size-group">
-    <label for="page-size">Count per page:</label>
-    <select id="page-size">
-        <option value="3">3</option>
-        <option value="5" selected>5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-    </select>
-</div>
-<table id="table">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Title</th>
-        <th>Race</th>
-        <th>Profession</th>
-        <th>Level</th>
-        <th>Birthday</th>
-        <th>Banned</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody id="table-body"></tbody>
-</table>
-<div id="pages-group">
-    <span>Pages: </span>
-    <span id="pages-list"></span>
-</div>
+    <div id="page-size-group">
+        <label for="page-size">Count per page:</label>
+        <select id="page-size">
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+    <table id="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Race</th>
+            <th>Profession</th>
+            <th>Level</th>
+            <th>Birthday</th>
+            <th>Banned</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+    <div id="pages-group">
+        <span>Pages: </span>
+        <span id="pages-list"></span>
+    </div>
+    <hr>
+    <div class="create-player-form">
+        <h2>Create new account:</h2>
+        <div class="form-group">
+            <label for="create-name">Name:</label>
+            <input type="text" id="create-name" maxlength="12" placeholder="Enter name...">
+        </div>
+        <div class="form-group">
+            <label for="create-title">Title:</label>
+            <input type="text" id="create-title" maxlength="30" placeholder="Enter title...">
+        </div>
+        <div class="form-group">
+            <label for="create-race">Race:</label>
+            <select id="create-race"></select>
+        </div>
+        <div class="form-group">
+            <label for="create-profession">Profession:</label>
+            <select id="create-profession"></select>
+        </div>
+        <div class="form-group">
+            <label for="create-level">Level:</label>
+            <input type="number" id="create-level" min="0" max="100" placeholder="0">
+        </div>
+        <div class="form-group">
+            <label for="create-birthday">Birthday:</label>
+            <input type="date" id="create-birthday">
+        </div>
+        <div class="form-group">
+            <label for="create-banned">Banned:</label>
+            <select id="create-banned">
+                <option value="false" selected>No</option>
+                <option value="true">Yes</option>
+            </select>
+        </div>
+        <div class="form-submit-group">
+            <img th:src="@{/static/img/save.png}" alt="Save" id="create-save-btn" class="icon-btn">
+        </div>
+    </div>
 </div>
 </body>
 </html>

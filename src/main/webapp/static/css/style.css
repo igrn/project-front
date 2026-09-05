@@ -33,7 +33,8 @@ h2 {
 
 #table th, table td {
     border: 2px solid #485062;
-    padding: 4px;
+    padding: 5px;
+    vertical-align: middle;
 }
 
 #table th {
@@ -69,8 +70,21 @@ h2 {
 }
 
 /* Buttons */
+.action-cell img {
+    border: 2px solid #6c7892;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+    vertical-align: top;
+}
+
+.icon-btn:hover {
+    transform: scale(1.15);
+    transition: transform 0.1s ease;
+}
+
 .page-btn {
-    background-color: #bebebe;
+    background-color: #cdcdcd;
     border-color: #6c7892;
     border-radius: 12px;
     color: #262a32;

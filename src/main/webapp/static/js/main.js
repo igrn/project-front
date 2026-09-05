@@ -48,6 +48,12 @@ window.addEventListener('DOMContentLoaded', () => {
                             <td>${item.level}</td>
                             <td>${birthday}</td>
                             <td>${banned}</td>
+                            <td class="action-cell">
+                                <img src="/static/img/edit.png" alt="Edit" class="icon-btn edit-btn">
+                            </td>
+                            <td class="action-cell">
+                                <img src="/static/img/delete.png" alt="Delete" class="icon-btn delete-btn" data-id="${item.id}">
+                            </td>
                         </tr>`;
                     $('#table-body').append(row);
                 });
@@ -77,4 +83,17 @@ window.addEventListener('DOMContentLoaded', () => {
             $('#pages-list').append($pageLink);
         }
     }
+
+    //Remove a player by clicking the delete button
+    $('#table-body').on('click', '.delete-btn', function () {
+        const playerId = $(this).data('id');
+
+        if (confirm('Are you sure you want to delete this player?')) {
+            $.ajax({
+                url: `/rest/players/${playerId}`,
+                method: 'DELETE',
+                success: () => loadAdminPanel()
+            });
+        }
+    });
 });

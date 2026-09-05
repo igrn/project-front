@@ -44,6 +44,12 @@ window.addEventListener('DOMContentLoaded', () => {
             method: 'GET',
             success: playerCount => {
                 totalPages = Math.ceil(playerCount / pageSize);
+
+                if (pageNumber >= totalPages && totalPages > 0) {
+                    pageNumber = totalPages - 1;
+                } else if (totalPages === 0) {
+                    pageNumber = 0;
+                }
                 buildPagination(totalPages);
                 fetchPlayerTable(pageNumber, pageSize);
             }
@@ -76,11 +82,11 @@ window.addEventListener('DOMContentLoaded', () => {
                             <td>${birthday}</td>
                             <td class="editable-banned">${banned}</td>
                             <td class="action-cell">
-                                <img src="${getUrl('/static/img/edit.png')}" alt="Edit" 
+                                <img src="${getUrl('/static/img/edit.png')}" alt="Edit"
                                     class="icon-btn edit-btn" data-id="${item.id}">
                             </td>
                             <td class="action-cell">
-                                <img src="${getUrl('/static/img/delete.png')}" alt="Delete" 
+                                <img src="${getUrl('/static/img/delete.png')}" alt="Delete"
                                     class="icon-btn delete-btn" data-id="${item.id}">
                             </td>
                         </tr>`;
